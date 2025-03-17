@@ -1,4 +1,4 @@
-
+import Voice from "./Voice.js";
 
 /**
  * @constant {AudioContext} mySynthCtx
@@ -39,8 +39,12 @@ const mtof = function (midi) {
  */
 const startNote = function (note) {
     if (!activeVoices[note]) {
-        activeVoices[note] = mtof(note);
-        console.log(activeVoices)
+
+        let someVoice = new Voice(mySynthCtx, mtof(note), masterGain);
+
+        activeVoices[note] = someVoice;
+        activeVoices[note].start();
+        console.log(activeVoices);
     }
 };
 
